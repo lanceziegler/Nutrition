@@ -6,6 +6,7 @@ function App() {
   const [toggle, setToggle] = useState('show');
 
   return (
+    // fetch data from usda
     <>
       <h1>Nutrition</h1>
       <div className='card'>
