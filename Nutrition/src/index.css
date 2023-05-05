@@ -33,7 +33,7 @@
 .square {
   min-width: 650px;
   min-height: 900px;
-  background-image: url('https://thumbs.dreamstime.com/b/surprised-fat-man-25234867.jpg');
+  background-color: red;
   background-repeat: no-repeat;
 }
 
