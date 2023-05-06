@@ -31,9 +31,10 @@
 }
 
 .square {
-  width: 200px;
-  height: 200px;
-  background: red;
+  min-width: 650px;
+  min-height: 900px;
+  background-color: red;
+  background-repeat: no-repeat;
 }
 
 a {
