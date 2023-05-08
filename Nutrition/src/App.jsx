@@ -10,7 +10,6 @@ function App() {
     <>
       <h1>Nutrition</h1>
       <div className='card'>
-        {/* comment */}
         {/* <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button> */}
