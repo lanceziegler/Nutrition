@@ -13,6 +13,7 @@ function App() {
         {/* <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button> */}
+        {/*comment*/}
         <button
           onClick={() => {
             toggle === 'show' ? setToggle('hide') : setToggle('show');
