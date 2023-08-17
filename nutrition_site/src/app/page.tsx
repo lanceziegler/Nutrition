@@ -12,6 +12,7 @@ import {
 } from '@mantine/core';
 import { useMantineColorScheme } from '@mantine/core';
 import Loading from './loading';
+import NavbarComponent from './components/navbar';
 
 function Page() {
   const [message, setMessage] = useState('');
@@ -37,18 +38,16 @@ function Page() {
 
   return (
     <>
+      <NavbarComponent></NavbarComponent>
       {/* {isLoading ? <div>loading...</div> : null} */}
       {/* {isLoading ? <Loader color='red'></Loader> : null} */}
-      <div>{message}</div>
+      {/* <div>{message}</div>
       {people.map((person, index) => (
         <div key={index}>{person}</div>
-      ))}
+      ))} */}
       {/* <People /> */}
 
-      <Title align='center' color='orange.7'>
-        Title placeholder
-      </Title>
-      <Title>{colorScheme}</Title>
+      {/* <Title>{colorScheme}</Title> */}
       <Button variant='default' onClick={handleColorSchemeToggle}>
         Change color scheme
       </Button>
