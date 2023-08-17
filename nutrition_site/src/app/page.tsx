@@ -23,7 +23,6 @@ function Page() {
   const handleColorSchemeToggle = () => {
     toggleColorScheme(); // Call the toggleColorScheme function
   };
-  console.log('Hello');
 
   useEffect(() => {
     fetch('http://localhost:8080/api/home')
