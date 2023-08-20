@@ -1,8 +1,9 @@
-// import './globals.css';
+import './globals.css';
 // import type { Metadata } from 'next';
 // import { Inter } from 'next/font/google';
 import RootStyleRegistry from './emotion';
 import React from 'react';
+import Provider from './components/Provider';
 
 //! Original
 // const inter = Inter({ subsets: ['latin'] });
@@ -26,6 +27,7 @@ import React from 'react';
 
 //* This function created via:
 //* https://stackoverflow.com/questions/74328955/how-to-use-mantine-ui-with-next-13
+//@ts-ignore
 export default function RootLayout({ children }) {
   return (
     <html lang='en-US'>
@@ -34,7 +36,10 @@ export default function RootLayout({ children }) {
         <title>Nutrition</title>
       </head>
       <body>
-        <RootStyleRegistry>{children}</RootStyleRegistry>
+        {/**@ts-ignore */}
+        <Provider>
+          <RootStyleRegistry>{children}</RootStyleRegistry>
+        </Provider>
       </body>
     </html>
   );

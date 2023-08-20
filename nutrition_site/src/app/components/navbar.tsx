@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import {
   createStyles,
@@ -29,6 +30,8 @@ import {
   IconMeat,
 } from '@tabler/icons-react';
 import { MantineLogo } from '@mantine/ds';
+import ThemeBtn from './ThemeBtn';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -137,13 +140,17 @@ export default function NavbarComponent() {
           <Code sx={{ fontWeight: 700 }}>v1.0.0</Code>
         </Group>
         {links}
+        <ThemeBtn />
       </Navbar.Section>
 
       <Navbar.Section className={classes.footer}>
         <a
           href='#'
           className={classes.link}
-          onClick={(event) => event.preventDefault()}
+          onClick={(event) => {
+            event.preventDefault();
+            signOut();
+          }}
         >
           <IconLogout className={classes.linkIcon} stroke={1.5} />
           <span>Logout</span>

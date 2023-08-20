@@ -1,7 +1,4 @@
-'use client';
-
 import React, { Suspense } from 'react';
-import { useEffect, useState } from 'react';
 import {
   Button,
   ColorScheme,
@@ -10,46 +7,21 @@ import {
   Container,
   Stack,
 } from '@mantine/core';
-import { useMantineColorScheme } from '@mantine/core';
-import Loading from './loading';
-import NavbarComponent from './components/navbar';
+import connectDB from '../../utils/database';
+// Project Components
+import NavbarComponent from './components/Navbar';
+import SignInOut from './components/SignInOut';
+import { AuthenticationForm } from './components/AuthBox';
 
 function Page() {
-  const [message, setMessage] = useState('');
-  const [people, setPeople] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-  const handleColorSchemeToggle = () => {
-    toggleColorScheme(); // Call the toggleColorScheme function
-  };
-
-  useEffect(() => {
-    fetch('http://localhost:8080/api/home')
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setMessage(data.message);
-        setPeople(data.people);
-        setIsLoading(false);
-      });
-  }, []);
+  const db = connectDB();
 
   return (
     <>
-      <NavbarComponent></NavbarComponent>
-      {/* {isLoading ? <div>loading...</div> : null} */}
-      {/* {isLoading ? <Loader color='red'></Loader> : null} */}
-      {/* <div>{message}</div>
-      {people.map((person, index) => (
-        <div key={index}>{person}</div>
-      ))} */}
-      {/* <People /> */}
-
-      {/* <Title>{colorScheme}</Title> */}
-      <Button variant='default' onClick={handleColorSchemeToggle}>
-        Change color scheme
-      </Button>
+      <div className='portal'>
+        <NavbarComponent></NavbarComponent>
+        <AuthenticationForm className='authBox' maw={430} />
+      </div>
     </>
   );
 }
