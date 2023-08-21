@@ -8,7 +8,11 @@ import {
   ColorPicker,
 } from '@mantine/core';
 import { useServerInsertedHTML } from 'next/navigation';
+import NextApp, { AppProps, AppContext } from 'next/app';
+import { GetServerSideProps } from 'next';
+import { getCookie, setCookie } from 'cookies-next';
 import React, { useEffect, useState } from 'react';
+import { useLocalStorage } from '@mantine/hooks';
 
 //* This file template created via:
 //* https://stackoverflow.com/questions/74328955/how-to-use-mantine-ui-with-next-13
@@ -33,12 +37,22 @@ export default function RootStyleRegistry({
     />
   ));
 
-  const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
-  console.log(`Color Scheme within emotion.tsx: ${colorScheme}`);
-  const toggleColorScheme = () =>
-    setColorScheme(colorScheme === 'dark' ? 'light' : 'dark');
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: 'mantine-color-scheme',
+    defaultValue: 'light',
+    getInitialValueInEffect: true,
+  });
 
-  
+  // const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
+  // console.log(`Color Scheme within emotion.tsx: ${colorScheme}`);
+  const toggleColorScheme = () => {
+    const nextColorScheme = colorScheme === 'dark' ? 'light' : 'dark';
+    setColorScheme(nextColorScheme);
+    // setCookie('mantine-color-scheme', nextColorScheme, {
+    //   maxAge: 60 * 60 * 24 * 30,
+    // });
+  };
+
   return (
     <ColorSchemeProvider
       colorScheme={colorScheme}
@@ -47,10 +61,20 @@ export default function RootStyleRegistry({
       <MantineProvider
         withGlobalStyles
         withNormalizeCSS
-        theme={{ colorScheme: colorScheme }}
+        theme={{
+          colorScheme: colorScheme,
+        }}
       >
         <CacheProvider value={cache}>{children}</CacheProvider>
       </MantineProvider>
     </ColorSchemeProvider>
   );
 }
+
+// RootStyleRegistry.getInitialProps = async (appContext: AppContext) => {
+//   const appProps = await NextApp.getInitialProps(appContext);
+//   return {
+//     ...appProps,
+//     colorScheme: getCookie('mantine-color-scheme', appContext.ctx) || 'light',
+//   };
+// };

@@ -1,8 +1,8 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
-console.log('dotenv loaded');
-console.log('MONGO_URI from dotenv:', process.env.MONGO_URI);
+// console.log('dotenv loaded');
+// console.log('MONGO_URI from dotenv:', process.env.MONGO_URI);
 
 const connectDB = async () => {
   try {
