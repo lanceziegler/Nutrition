@@ -12,10 +12,10 @@ import connectDB from '../../utils/database';
 import NavbarComponent from './components/Navbar';
 import SignInOut from './components/SignInOut';
 import { AuthenticationForm } from './components/AuthBox';
+import User from '../../models/user';
+
 
 function Page() {
-  const db = connectDB();
-
   return (
     <>
       <div className='portal'>
